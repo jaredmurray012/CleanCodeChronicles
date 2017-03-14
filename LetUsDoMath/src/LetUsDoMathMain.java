@@ -3,7 +3,7 @@
 // gmail jaredmurray012@gmail.com 
 // Main class file for LetUsDoMath
 
-// IN PROGRESS
+// IN PROGRESS... 
 
 import java.util.InputMismatchException;
 import java.util.Scanner; 
