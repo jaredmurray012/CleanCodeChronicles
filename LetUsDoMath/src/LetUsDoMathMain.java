@@ -34,44 +34,26 @@ public final class LetUsDoMathMain
 		
 		int userOptionSelected = 0; 
 		
-		try //VALIDATE USER ENTRY 
+		try
 		{
 			userOptionSelected = getOptionFromUser.nextInt();
-			
-			while(userOptionSelected < 0 || userOptionSelected > 5) 
-			{
-				System.out.println("not a valid entry, Please try again, or enter -1 to exit program");
-				userOptionSelected = getOptionFromUser.nextInt();
-				
-				if (userOptionSelected == -1)				
-				{
-					System.exit(0);
-				}
-			}
+			return testUserIntInput(userOptionSelected);
+		}
+		catch (InputMismatchException e)
+		{
+			testUserNonIntInput(e);
 		}
 		
-		catch(InputMismatchException e)
-		{	
-			while(e != null) // MEANS that user inputed a character/decimal point 
-			{
-				System.out.println("You did not enter in valid input, program will now shutdown");
-				System.exit(0);
-			}
-		} //END USER VALIDATION 
-		
-		
-		return userOptionSelected; 
+		return testUserIntInput(userOptionSelected); 
 	}
 
 	
 	public static void ImplementUserSelection(int numberFromUserSelection)
 	{
-		System.out.println("Now in ImplementUserSelection");
-		
 		switch(numberFromUserSelection)
 		{
 		case 1: 
-			additionEquation();
+			doAddition();
 			break; 
 			
 		case 2:
@@ -91,39 +73,85 @@ public final class LetUsDoMathMain
 			System.exit(0);
 			
 		}
-		 Finally: 
-			 System.out.println("A fine selection, one moment please.");
+		
 		
 	}
 	
-	public static int additionEquation()
-	{
-		firstOperand(); 
-		secondOperand(); 
+	public static void doAddition()
+	{	
+		System.out.println("You have selected Addition!");
+		int operandOne = getOperand(); 
+		int operandTwo = getOperand(); 
 		
-		return firstOperand() + secondOperand(); 
+		int result = operandOne + operandTwo; 
+		
+		printAdditionSolution(result, operandTwo, operandOne);  
 	}
-	
-	// Purpose is to ask user for input and validate said input and return it. 
-	public static int firstOperand()
+
+	public static int getOperand()
 	{
+		System.out.println("Please enter a number and press ENTER");
+		
 		Scanner OperandFromUser = new Scanner(System.in);
 		
 		int userSelectedOperand = 0;
 		
-		System.out.println("Please enter a positive whole number"); 
+		try
+		{
+			userSelectedOperand = OperandFromUser.nextInt();
+			return testOperand(userSelectedOperand); 
+		}
 		
-		// LEFT OFF AT THE USER VALIDATION FOR THIS FUNCTION
+		catch (InputMismatchException e)
+		{
+			testUserNonIntInput(e);
+		}
 		
-		return 0; 
-		
+		return testOperand(userSelectedOperand); 
 		
 	}
 	
-	// Purpose is to ask user for input and validate said input and return it. 
-	public static int secondOperand()
+	public static int testUserIntInput(int userOptionSelected)
 	{
-		return 0; 
+		
+		if (userOptionSelected < 0 || userOptionSelected > 4) 
+		{
+			System.out.println("not a valid entry, Please try again, or enter -1 to exit program");
+			
+			if (userOptionSelected == -1)				
+			{
+				System.out.println("GoodBye");
+				System.exit(0);
+			}
+			
+			determineUserSelection();
+			
+		}
+		return userOptionSelected; 
+	}
+	
+	public static int testOperand(int userOperand)
+	{
+		if (userOperand < 0 || userOperand > 2147483647)
+		{
+			System.out.println("Invalid operand entry please try again");
+			getOperand(); 
+		}
+		return userOperand; 
+	}
+	
+	public static void testUserNonIntInput(Exception e)
+	{
+			System.out.println("You did not enter in valid input, Please try again");
+			determineUserSelection();
+	}
+	
+	public static void printAdditionSolution(int result, int operandOne, int operandTwo)
+	{
+		String answerString = String.format("You selected %d and %d, when these 2 "
+				+ "numbers are added together we get %d", operandOne, operandTwo, result);
+		
+		System.out.println(answerString);
 	}
 
 }
