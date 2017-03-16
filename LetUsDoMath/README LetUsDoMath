@@ -1,0 +1,24 @@
+This is the README For LetUsDoMath
+
+This is a little mostly dumb, kind of smart calculator application made to practice 
+Clean Code Techniques. Aptly named the Clean Code Chronicles. This is part one. 
+
+THE PREAMBLE 
+
+The two topics that am I focusing on are good Variable names and small Functions. 
+
+Variables should express three things: Why this variable exist, what does it do, and 
+how it is used. Functions on the other hand are meant to be SHORT and focus on 
+ONE THING. 
+
+Those are the over-arching goals of this program. I choose to do a "calculator" app
+because it was the first idea that popped into my head and I decided that consistent
+coding is more important to me than making some elaborate project. 
+
+APPLICATION DETAILS 
+
+The goal of this application is to display a small variety of options to the user 
+and allow the user to select an option and proceed to solve a math equation using 
+prompts from the application. Also there intends to be a decent amount of user 
+validation so that the end user does not crash the program. Though the program 
+may exit depending on input. 
