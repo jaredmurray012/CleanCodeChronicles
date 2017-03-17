@@ -26,8 +26,6 @@ public final class LetUsDoMathMain
 	}
 	
 	
-	// Author's Note: I am not pleased with the size of this function, but I am unaware of the best of way
-	// Of Shortening it. 
 	public static int determineUserSelection() 
 	{
 		Scanner getOptionFromUser = new Scanner(System.in);
@@ -95,11 +93,13 @@ public final class LetUsDoMathMain
 		Scanner OperandFromUser = new Scanner(System.in);
 		
 		int userSelectedOperand = 0;
+		int passedUserInput = 0; 
 		
 		try
 		{
 			userSelectedOperand = OperandFromUser.nextInt();
-			return testOperand(userSelectedOperand); 
+			passedUserInput = testOperand(userSelectedOperand);
+			return passedUserInput; 
 		}
 		
 		catch (InputMismatchException e)
@@ -113,33 +113,46 @@ public final class LetUsDoMathMain
 	
 	public static int testUserIntInput(int userOptionSelected)
 	{
+		int closeProgramFlag = -1; 
+		int firstChoiceAvailable = 1; 
+		int lastChoiceAvailable = 4; 
 		
-		if (userOptionSelected < 0 || userOptionSelected > 4) 
+		if (userOptionSelected < firstChoiceAvailable || userOptionSelected > lastChoiceAvailable) 
 		{
-			System.out.println("not a valid entry, Please try again, or enter -1 to exit program");
 			
-			if (userOptionSelected == -1)				
+			
+			if (userOptionSelected == closeProgramFlag)				
 			{
-				System.out.println("GoodBye");
-				System.exit(0);
+					System.out.println("GoodBye");
+					System.exit(0);
 			}
 			
+			System.out.println("not a valid entry, Please try again, or enter -1 to exit program");
 			determineUserSelection();
-			
 		}
 		return userOptionSelected; 
 	}
 	
 	public static int testOperand(int userOperand)
 	{
-		if (userOperand < 0 || userOperand > 2147483647)
+		int smallestNonNegativeInt = 0; 
+		int largestNumberAnIntCanHandleDividedByTwo = 1073741823; 
+		
+		if (userOperand < smallestNonNegativeInt || userOperand > largestNumberAnIntCanHandleDividedByTwo)
 		{
-			System.out.println("Invalid operand entry please try again");
-			getOperand(); 
+			System.out.println("The Number you entered was either to big or to small.");
+			System.out.println("Please keep the number range between 0 - 1073741823");
+			getOperand();    
+		} else 
+		{
+			return userOperand;
 		}
-		return userOperand; 
+		
+		return getOperand();
+		
+		 
 	}
-	
+
 	public static void testUserNonIntInput(Exception e)
 	{
 			System.out.println("You did not enter in valid input, Please try again");
