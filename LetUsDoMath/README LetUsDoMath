@@ -23,6 +23,13 @@ prompts from the application. Also there intends to be a decent amount of user
 validation so that the end user does not crash the program. Though the program 
 may exit depending on input. 
 
+UPDATE 4/11/2017 
+
+Been to long since I have put any work into this. But the restructuring has begun and 
+I am pleased with how sharper everything looks. One big change is that when an user 
+inputs the wrong input for a number I automatically put it to zero and move on with the 
+program. I don't know if I am going to stick with that but I like it so far. 
+
 LEGACY CODE 
 
 I am preparing to rewrite the program to a OOP structure. I started out in using functional 
